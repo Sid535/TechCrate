@@ -3,19 +3,17 @@ import bannerOne from "../../assets/banner-1.webp";
 import bannerTwo from "../../assets/banner-2.webp";
 import bannerThree from "../../assets/banner-3.webp";
 import {
-  Airplay,
-  BabyIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  CloudLightning,
-  Heater,
-  Images,
-  Shirt,
-  ShirtIcon,
-  ShoppingBasket,
-  UmbrellaIcon,
-  WashingMachine,
-  WatchIcon,
+  Monitor,
+  Cpu,
+  MemoryStick,
+  HardDrive,
+  CircuitBoard,
+  Laptop,
+  Smartphone,
+  Chip,
+  Puzzle,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useState } from "react";
@@ -32,20 +30,20 @@ import ProductDetailsDialog from "@/components/shopping-view/product-details";
 import { getFeatureImages } from "@/store/common-slice";
 
 const categoriesWithIcon = [
-  { id: "men", label: "Men", icon: ShirtIcon },
-  { id: "women", label: "Women", icon: CloudLightning },
-  { id: "kids", label: "Kids", icon: BabyIcon },
-  { id: "accessories", label: "Accessories", icon: WatchIcon },
-  { id: "footwear", label: "Footwear", icon: UmbrellaIcon },
+  { id: "Monitor", label: "Monitor", icon: Monitor },
+  { id: "Grafic_Card", label: "Grafic Card", icon: CircuitBoard },
+  { id: "CPU", label: "CPU", icon: Cpu },
+  { id: "RAM", label: "RAM", icon: MemoryStick },
+  { id: "Storage", label: "Storage", icon: HardDrive },
 ];
 
 const brandsWithIcon = [
-  { id: "nike", label: "Nike", icon: Shirt },
-  { id: "adidas", label: "Adidas", icon: WashingMachine },
-  { id: "puma", label: "Puma", icon: ShoppingBasket },
-  { id: "levi", label: "Levi's", icon: Airplay },
-  { id: "zara", label: "Zara", icon: Images },
-  { id: "h&m", label: "H&M", icon: Heater },
+  { id: "amd", label: "AMD", icon: Chip },
+  { id: "asus", label: "Asus", icon: Laptop },
+  { id: "intel", label: "Intel", icon: Cpu },
+  { id: "nvidia", label: "Nvidia", icon: Puzzle },
+  { id: "samsumg", label: "Samsumg", icon: Smartphone },
+  { id: "seagate", label: "Seagate", icon: HardDrive },
 ];
 function ShoppingHome() {
   const [currentSlide, setCurrentSlide] = useState(0);
