@@ -8,13 +8,19 @@ const initialState = {
 
 export const addReview = createAsyncThunk(
   "/order/addReview",
-  async (formdata) => {
-    const response = await axios.post(
-      `http://localhost:5000/api/shop/review/add`,
-      formdata
-    );
-
-    return response.data;
+  async (formdata, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/shop/review/add`,
+        formdata
+      );
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.data) {
+        return rejectWithValue(error.response.data);
+      }
+      return rejectWithValue({ message: "An unknown error occurred" });
+    }
   }
 );
 

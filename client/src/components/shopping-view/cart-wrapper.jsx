@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { SheetContent, SheetHeader, SheetTitle } from "../ui/sheet";
 import UserCartItemsContent from "./cart-items-content";
+import PropTypes from 'prop-types'; // 1. Import PropTypes
 
 function UserCartWrapper({ cartItems, setOpenCartSheet }) {
   const navigate = useNavigate();
@@ -26,13 +27,15 @@ function UserCartWrapper({ cartItems, setOpenCartSheet }) {
       </SheetHeader>
       <div className="mt-8 space-y-4">
         {cartItems && cartItems.length > 0
-          ? cartItems.map((item) => <UserCartItemsContent cartItem={item} />)
-          : null}
+          ? cartItems.map((item) => (
+              <UserCartItemsContent key={item.productId} cartItem={item} />
+            ))
+          : <p>Your cart is empty.</p>}
       </div>
       <div className="mt-8 space-y-4">
         <div className="flex justify-between">
           <span className="font-bold">Total</span>
-          <span className="font-bold">${totalCartAmount}</span>
+          <span className="font-bold">${totalCartAmount.toFixed(2)}</span>
         </div>
       </div>
       <Button
@@ -41,6 +44,7 @@ function UserCartWrapper({ cartItems, setOpenCartSheet }) {
           setOpenCartSheet(false);
         }}
         className="w-full mt-6"
+        disabled={!cartItems || cartItems.length === 0}
       >
         Checkout
       </Button>
@@ -48,4 +52,11 @@ function UserCartWrapper({ cartItems, setOpenCartSheet }) {
   );
 }
 
+// 2. Add the prop validation block
+UserCartWrapper.propTypes = {
+  cartItems: PropTypes.array.isRequired,
+  setOpenCartSheet: PropTypes.func.isRequired,
+};
+
 export default UserCartWrapper;
+

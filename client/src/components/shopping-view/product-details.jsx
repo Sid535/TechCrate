@@ -75,6 +75,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
     setReviewMsg("");
   }
 
+  
   function handleAddReview() {
     dispatch(
       addReview({
@@ -84,15 +85,23 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
         reviewMessage: reviewMsg,
         reviewValue: rating,
       })
-    ).then((data) => {
-      if (data.payload.success) {
-        setRating(0);
-        setReviewMsg("");
-        dispatch(getReviews(productDetails?._id));
-        toast({
-          title: "Review added successfully!",
-        });
-      }
+    )
+    .unwrap() // This will return a promise that resolves on success or rejects on failure
+    .then(() => {
+      // This block runs only on success
+      setRating(0);
+      setReviewMsg("");
+      dispatch(getReviews(productDetails?._id));
+      toast({
+        title: "Review added successfully!",
+      });
+    })
+    .catch((error) => {
+      // This block runs when the API call fails
+      toast({
+        title: error.message || "Could not submit review.",
+        variant: "destructive",
+      });
     });
   }
 
