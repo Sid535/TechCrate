@@ -12,7 +12,7 @@ import {
   CircuitBoard,
   Laptop,
   Smartphone,
-  Chip,
+  Activity,
   Puzzle,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -38,7 +38,7 @@ const categoriesWithIcon = [
 ];
 
 const brandsWithIcon = [
-  { id: "amd", label: "AMD", icon: Chip },
+  { id: "amd", label: "AMD", icon: Activity },
   { id: "asus", label: "Asus", icon: Laptop },
   { id: "intel", label: "Intel", icon: Cpu },
   { id: "nvidia", label: "Nvidia", icon: Puzzle },
